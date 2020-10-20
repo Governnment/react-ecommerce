@@ -1,9 +1,39 @@
 main {
-    min-height: 80vh;
+  min-height: 80vh;
 }
-h3{
-    padding: 1rem;
+h3 {
+  padding: 1rem;
 }
-.rating span{
-    margin: 0.1rem;
+.rating span {
+  margin: 0.1rem;
+}
+.errorAnimation {
+  width: 100%;
+  height: auto;
+}
+.errorText {
+  width: 100%;
+  height: auto;
+  text-align: center;
+}
+.errorText h4 {
+  font-size: 40px;
+}
+.errorButton {
+  margin: 1.5rem 0;
+  font-size: 24px;
+  border-radius: 5rem;
+}
+@media only screen and (max-width: 500px) {
+  .errorText {
+    width: 100%;
+    height: auto;
+    text-align: center;
+  }
+  .errorText h4 {
+    font-size: 20px;
+  }
+  .errorButton {
+    margin: 1.5rem 0;
+  }
 }
