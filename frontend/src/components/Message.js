@@ -3,8 +3,8 @@ import errorAnimation from '../video/404-Animation.mp4'
 
 const Message = ({ children }) => {
   return (
-    <div>
-      <video className='errorAnimation' autoPlay loop muted>
+    <div className='message'>
+      <video className='errorAnimation' autoPlay muted>
         <source src={errorAnimation} type='video/mp4' />
       </video>
       <div className='errorText'>
