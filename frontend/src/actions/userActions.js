@@ -17,6 +17,7 @@ import {
   USER_LIST_REQUEST,
   USER_LIST_SUCCESS,
   USER_LIST_FAIL,
+  USER_LIST_RESET,
 } from '../constants/userConstants'
 import { ORDER_LIST_MY_RESET } from '../constants/orderConstants'
 
@@ -59,6 +60,7 @@ export const logout = () => (dispacth) => {
   localStorage.removeItem('userInfo')
   dispacth({ type: USER_LOGOUT })
   dispacth({ type: USER_DETAILS_RESET })
+  dispacth({ type: USER_LIST_RESET })
   dispacth({ type: ORDER_LIST_MY_RESET })
 }
 
