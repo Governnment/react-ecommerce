@@ -4,7 +4,12 @@ import { Table, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Alert from '../components/Alert'
 import Loader from '../components/Loader'
-import { listProducts, deleteProduct } from '../actions/productActions'
+import {
+  listProducts,
+  deleteProduct,
+  createProduct,
+} from '../actions/productActions'
+import { PRODUCT_CREATE_RESET } from '../constants/productConstans'
 
 const ProductListScreen = ({ history, match }) => {
   const dispatch = useDispatch()
@@ -19,19 +24,40 @@ const ProductListScreen = ({ history, match }) => {
     success: successDelete,
   } = productDelete
 
+  const productCreate = useSelector((state) => state.productCreate)
+  const {
+    loading: loadingCreate,
+    error: errorCreate,
+    success: successCreate,
+    product: createdProduct,
+  } = productCreate
+
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
   useEffect(() => {
-    if (userInfo && userInfo.isAdmin) {
-      dispatch(listProducts())
-    } else {
+    dispatch({ type: PRODUCT_CREATE_RESET })
+
+    if (!userInfo.isAdmin) {
       history.push('/login')
     }
-  }, [dispatch, history, userInfo, successDelete])
 
-  const createProductHandler = (product) => {
-    //Create product
+    if (successCreate) {
+      history.push(`/admin/product/${createdProduct._id}/edit`)
+    } else {
+      dispatch(listProducts())
+    }
+  }, [
+    dispatch,
+    history,
+    userInfo,
+    successDelete,
+    successCreate,
+    createdProduct,
+  ])
+
+  const createProductHandler = () => {
+    dispatch(createProduct())
   }
 
   const deleteHandler = (id) => {
@@ -54,6 +80,8 @@ const ProductListScreen = ({ history, match }) => {
       </Row>
       {loadingDelete && <Loader />}
       {errorDelete && <Alert variant='danger'>{errorDelete}</Alert>}
+      {loadingCreate && <Loader />}
+      {errorCreate && <Alert variant='danger'>{errorCreate}</Alert>}
       {loading ? (
         <Loader />
       ) : error ? (
@@ -67,7 +95,7 @@ const ProductListScreen = ({ history, match }) => {
               <th>PRICE</th>
               <th>CATEGORY</th>
               <th>BRAND</th>
-              <th></th>
+              <th>In Stock</th>
             </tr>
           </thead>
           <tbody>
