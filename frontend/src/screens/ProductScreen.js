@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { LinkContainer } from 'react-router-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
 import Rating from '../components/Rating'
@@ -10,6 +11,9 @@ import { listProductDetails } from '../actions/productActions'
 const ProductScreen = ({ history, match }) => {
   const [qty, setQty] = useState(1)
   const dispatch = useDispatch()
+
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
 
   const productDetails = useSelector((state) => state.productDetails)
   const { loading, error, product } = productDetails
@@ -109,6 +113,17 @@ const ProductScreen = ({ history, match }) => {
                 </ListGroup.Item>
               </ListGroup>
             </Card>
+            {userInfo && userInfo.isAdmin && (
+              <ListGroup className='py-3'>
+                <ListGroup.Item>
+                  <LinkContainer to={`/admin/product/${product._id}/edit`}>
+                    <Button className='btn-block' type='button'>
+                      Edit
+                    </Button>
+                  </LinkContainer>
+                </ListGroup.Item>
+              </ListGroup>
+            )}
           </Col>
         </Row>
       )}
