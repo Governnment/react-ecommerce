@@ -6,7 +6,7 @@ import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
 import Rating from '../components/Rating'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
-import { listProductDetails } from '../actions/productActions'
+import { listProductDetails, deleteProduct } from '../actions/productActions'
 
 const ProductScreen = ({ history, match }) => {
   const [qty, setQty] = useState(1)
@@ -18,12 +18,29 @@ const ProductScreen = ({ history, match }) => {
   const productDetails = useSelector((state) => state.productDetails)
   const { loading, error, product } = productDetails
 
+  const productDelete = useSelector((state) => state.productDelete)
+  const {
+    loading: loadingDelete,
+    error: errorDelete,
+    success: successDelete,
+  } = productDelete
+
   useEffect(() => {
     dispatch(listProductDetails(match.params.id))
-  }, [dispatch, match])
+
+    if (successDelete) {
+      history.push('/')
+    }
+  }, [dispatch, history, match, successDelete])
 
   const addToCartHandler = () => {
     history.push(`/cart/${match.params.id}?qty=${qty}`)
+  }
+
+  const deleteHandler = (id) => {
+    if (window.confirm('Are you sure?')) {
+      dispatch(deleteProduct(id))
+    }
   }
 
   return (
@@ -117,10 +134,22 @@ const ProductScreen = ({ history, match }) => {
               <ListGroup className='py-3'>
                 <ListGroup.Item>
                   <LinkContainer to={`/admin/product/${product._id}/edit`}>
-                    <Button className='btn-block' type='button'>
-                      Edit
+                    <Button
+                      className='btn-block'
+                      type='button'
+                      variant='warning'
+                    >
+                      <i className='fas fa-pen'></i> Edit
                     </Button>
                   </LinkContainer>
+                  <Button
+                    className='btn-block'
+                    type='button'
+                    variant='danger'
+                    onClick={() => deleteHandler(product._id)}
+                  >
+                    <i className='fas fa-trash'></i> Delete
+                  </Button>
                 </ListGroup.Item>
               </ListGroup>
             )}
