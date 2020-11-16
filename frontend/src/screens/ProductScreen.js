@@ -19,11 +19,7 @@ const ProductScreen = ({ history, match }) => {
   const { loading, error, product } = productDetails
 
   const productDelete = useSelector((state) => state.productDelete)
-  const {
-    loading: loadingDelete,
-    error: errorDelete,
-    success: successDelete,
-  } = productDelete
+  const { success: successDelete } = productDelete
 
   useEffect(() => {
     dispatch(listProductDetails(match.params.id))
