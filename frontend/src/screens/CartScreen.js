@@ -42,7 +42,10 @@ const CartScreen = ({ match, location, history }) => {
         ) : (
           <ListGroup variant='flush'>
             {cartItems.map((item) => (
-              <ListGroup.Item key={item.product}>
+              <ListGroup.Item
+                key={item.product}
+                className='list-group-item-dark my-1'
+              >
                 <Row>
                   <Col md={2}>
                     <Image src={item.image} alt={item.name} fluid rounded />
@@ -70,6 +73,7 @@ const CartScreen = ({ match, location, history }) => {
                   </Col>
                   <Col md={2}>
                     <Button
+                      className='btn-light-custom'
                       type='button'
                       variant='light'
                       onClick={() => removeFromCartHandler(item.product)}
@@ -86,7 +90,7 @@ const CartScreen = ({ match, location, history }) => {
       <Col md={4}>
         <Card>
           <ListGroup variant='flush'>
-            <ListGroup.Item>
+            <ListGroup.Item className='list-group-item-dark'>
               <h2>
                 Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
                 items
@@ -96,7 +100,7 @@ const CartScreen = ({ match, location, history }) => {
                 .reduce((acc, item) => acc + item.qty * item.price, 0)
                 .toFixed(2)}
             </ListGroup.Item>
-            <ListGroup.Item>
+            <ListGroup.Item className='list-group-item-dark'>
               <Button
                 type='button'
                 className='btn-block'

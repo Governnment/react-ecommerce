@@ -60,7 +60,7 @@ const PlaceOrderScreen = ({ history }) => {
       <Row>
         <Col md={8}>
           <ListGroup variant='flush'>
-            <ListGroup.Item>
+            <ListGroup.Item className='list-group-item-dark my-1'>
               <h2>Shipping</h2>
               <p>
                 <strong>Address:</strong>
@@ -69,20 +69,23 @@ const PlaceOrderScreen = ({ history }) => {
               </p>
             </ListGroup.Item>
 
-            <ListGroup.Item>
+            <ListGroup.Item className='list-group-item-dark my-1'>
               <h2>Payment Method</h2>
               <strong>Method: </strong>
               {cart.paymentMethod}
             </ListGroup.Item>
 
-            <ListGroup.Item>
+            <ListGroup.Item className='list-group-item-dark my-1'>
               <h2>Order Items</h2>
               {cart.cartItems.length === 0 ? (
                 <Alert>Your cart is empty</Alert>
               ) : (
                 <ListGroup variant='flush'>
                   {cart.cartItems.map((item, index) => (
-                    <ListGroup.Item key={index}>
+                    <ListGroup.Item
+                      key={index}
+                      className='list-group-item-dark'
+                    >
                       <Row>
                         <Col md={1}>
                           <Image
@@ -111,37 +114,37 @@ const PlaceOrderScreen = ({ history }) => {
         <Col md={4}>
           <Card>
             <ListGroup variant='flush'>
-              <ListGroup.Item>
+              <ListGroup.Item className='list-group-item-dark'>
                 <h2>Order Summary</h2>
               </ListGroup.Item>
-              <ListGroup.Item>
+              <ListGroup.Item className='list-group-item-dark'>
                 <Row>
                   <Col>Items</Col>
                   <Col>${cart.itemsPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              <ListGroup.Item>
+              <ListGroup.Item className='list-group-item-dark'>
                 <Row>
                   <Col>Shipping</Col>
                   <Col>${cart.shippingPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              <ListGroup.Item>
+              <ListGroup.Item className='list-group-item-dark'>
                 <Row>
                   <Col>Tax</Col>
                   <Col>${cart.taxPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              <ListGroup.Item>
+              <ListGroup.Item className='list-group-item-dark'>
                 <Row>
                   <Col>Total</Col>
                   <Col>${cart.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              <ListGroup.Item>
+              <ListGroup.Item className='list-group-item-dark'>
                 {error && <Alert variant='danger'>{error}</Alert>}
               </ListGroup.Item>
-              <ListGroup.Item>
+              <ListGroup.Item className='list-group-item-dark'>
                 <Button
                   type='button'
                   className='btn-block'

@@ -72,7 +72,7 @@ const ProductScreen = ({ history, match }) => {
   }
   return (
     <>
-      <Link to='/' className='btn btn-light my-3'>
+      <Link to='/' className='btn btn-light my-3 btn-back'>
         Back
       </Link>
       {loading ? (
@@ -87,17 +87,19 @@ const ProductScreen = ({ history, match }) => {
             </Col>
             <Col md={3}>
               <ListGroup variant='flush'>
-                <ListGroup.Item>
+                <ListGroup.Item className='list-group-item-dark m-1'>
                   <h2>{product.name}</h2>
                 </ListGroup.Item>
-                <ListGroup.Item>
+                <ListGroup.Item className='list-group-item-dark m-1'>
                   <Rating
                     value={product.rating}
                     text={`${product.numReviews} reviews`}
                   />
                 </ListGroup.Item>
-                <ListGroup.Item>Price: ${product.price}</ListGroup.Item>
-                <ListGroup.Item>
+                <ListGroup.Item className='list-group-item-dark m-1'>
+                  Price: ${product.price}
+                </ListGroup.Item>
+                <ListGroup.Item className='list-group-item-dark m-1'>
                   Description: {product.description}
                 </ListGroup.Item>
               </ListGroup>
@@ -105,7 +107,7 @@ const ProductScreen = ({ history, match }) => {
             <Col md={3}>
               <Card>
                 <ListGroup variant='flash'>
-                  <ListGroup.Item>
+                  <ListGroup.Item className='list-group-item-dark'>
                     <Row>
                       <Col>Price:</Col>
                       <Col>
@@ -114,7 +116,7 @@ const ProductScreen = ({ history, match }) => {
                     </Row>
                   </ListGroup.Item>
 
-                  <ListGroup.Item>
+                  <ListGroup.Item className='list-group-item-dark'>
                     <Row>
                       <Col>Status:</Col>
                       <Col>
@@ -126,7 +128,7 @@ const ProductScreen = ({ history, match }) => {
                   </ListGroup.Item>
 
                   {product.countInStock > 0 && (
-                    <ListGroup.Item>
+                    <ListGroup.Item className='list-group-item-dark'>
                       <Row>
                         <Col>Qty</Col>
                         <Col>
@@ -148,7 +150,7 @@ const ProductScreen = ({ history, match }) => {
                     </ListGroup.Item>
                   )}
 
-                  <ListGroup.Item>
+                  <ListGroup.Item className='list-group-item-dark'>
                     <Button
                       onClick={addToCartHandler}
                       className='btn-block'
@@ -162,10 +164,10 @@ const ProductScreen = ({ history, match }) => {
               </Card>
               {userInfo && userInfo.isAdmin && (
                 <ListGroup className='py-3'>
-                  <ListGroup.Item>
+                  <ListGroup.Item className='list-group-item-dark'>
                     <LinkContainer to={`/admin/product/${product._id}/edit`}>
                       <Button
-                        className='btn-block'
+                        className='btn-block btn-edit'
                         type='button'
                         variant='warning'
                       >
@@ -173,7 +175,7 @@ const ProductScreen = ({ history, match }) => {
                       </Button>
                     </LinkContainer>
                     <Button
-                      className='btn-block'
+                      className='btn-block btn-delete mt-3'
                       type='button'
                       variant='danger'
                       onClick={() => deleteHandler(product._id)}
@@ -189,16 +191,21 @@ const ProductScreen = ({ history, match }) => {
             <Col md={6}>
               <h2>Reviews</h2>
               {product.reviews.length === 0 && <Alert>No Reviews</Alert>}
-              <ListGroup variant='flush'>
+              <ListGroup variant='flush' className='list-group-item-dark'>
                 {product.reviews.map((review) => (
-                  <ListGroup.Item key={review._id}>
+                  <ListGroup.Item
+                    key={review._id}
+                    className='list-group-item-dark'
+                  >
                     <strong>{review.name}</strong>
-                    <Rating value={review.rating} />
+                    <div className='my-2'>
+                      <Rating value={review.rating} />
+                    </div>
                     <p>{review.createdAt.substring(0, 10)}</p>
                     <p>{review.comment}</p>
                   </ListGroup.Item>
                 ))}
-                <ListGroup.Item>
+                <ListGroup.Item className='list-group-item-dark'>
                   <h2>Write a Review</h2>
                   {errorProductReview && (
                     <Alert variant='danger'>{errorProductReview}</Alert>

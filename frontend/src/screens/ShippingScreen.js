@@ -70,8 +70,7 @@ const ShippingScreen = ({ history }) => {
             onChange={(e) => setCountry(e.target.value)}
           ></Form.Control>
         </Form.Group>
-
-        <Button type='submit' variant='primary'>
+        <Button type='submit' variant='primary' className=''>
           Continue
         </Button>
       </Form>

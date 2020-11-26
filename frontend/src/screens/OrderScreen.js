@@ -99,7 +99,7 @@ const OrderScreen = ({ match, history }) => {
       <Row>
         <Col md={8}>
           <ListGroup variant='flush'>
-            <ListGroup.Item>
+            <ListGroup.Item className='list-group-item-dark m-1'>
               <h2>Shipping</h2>
               <p>
                 <strong>Name: </strong> {order.user.name}
@@ -124,7 +124,7 @@ const OrderScreen = ({ match, history }) => {
               )}
             </ListGroup.Item>
 
-            <ListGroup.Item>
+            <ListGroup.Item className='list-group-item-dark m-1'>
               <h2>Payment Method</h2>
               <p>
                 <strong>Method: </strong>
@@ -137,14 +137,17 @@ const OrderScreen = ({ match, history }) => {
               )}
             </ListGroup.Item>
 
-            <ListGroup.Item>
+            <ListGroup.Item className='list-group-item-dark m-1'>
               <h2>Order Items</h2>
               {order.orderItems.length === 0 ? (
                 <Alert>Order is empty</Alert>
               ) : (
                 <ListGroup variant='flush'>
                   {order.orderItems.map((item, index) => (
-                    <ListGroup.Item key={index}>
+                    <ListGroup.Item
+                      key={index}
+                      className='list-group-item-dark m-1'
+                    >
                       <Row>
                         <Col md={1}>
                           <Image
@@ -173,35 +176,35 @@ const OrderScreen = ({ match, history }) => {
         <Col md={4}>
           <Card>
             <ListGroup variant='flush'>
-              <ListGroup.Item>
+              <ListGroup.Item className='list-group-item-dark '>
                 <h2>Order Summary</h2>
               </ListGroup.Item>
-              <ListGroup.Item>
+              <ListGroup.Item className='list-group-item-dark'>
                 <Row>
                   <Col>Items</Col>
                   <Col>${order.itemsPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              <ListGroup.Item>
+              <ListGroup.Item className='list-group-item-dark'>
                 <Row>
                   <Col>Shipping</Col>
                   <Col>${order.shippingPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              <ListGroup.Item>
+              <ListGroup.Item className='list-group-item-dark'>
                 <Row>
                   <Col>Tax</Col>
                   <Col>${order.taxPrice}</Col>
                 </Row>
               </ListGroup.Item>
-              <ListGroup.Item>
+              <ListGroup.Item className='list-group-item-dark'>
                 <Row>
                   <Col>Total</Col>
                   <Col>${order.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
               {!order.isPaid && (
-                <ListGroup.Item>
+                <ListGroup.Item className='list-group-item-dark'>
                   {loadingPay && <Loader />}
                   {!sdkReady ? (
                     <Loader />
@@ -218,7 +221,7 @@ const OrderScreen = ({ match, history }) => {
                 userInfo.isAdmin &&
                 order.isPaid &&
                 !order.isDelivered && (
-                  <ListGroup.Item>
+                  <ListGroup.Item className='list-group-item-dark'>
                     <Button
                       type='button'
                       className='btn btn-block'
