@@ -25,7 +25,7 @@ const getProducts = asyncHandler(async (req, res) => {
   res.json({ products, page, pages: Math.ceil(count / pageSize) })
 })
 
-//? @desk     Fetch all produc
+//? @desk     Fetch a product by ID
 //? @rout     GET /api/products>:id
 //? @access   Public
 

@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const carouselSchema = mongoose.Schema(
+const sliderSchema = mongoose.Schema(
   {
     title: {
       type: String,
@@ -28,6 +28,6 @@ const carouselSchema = mongoose.Schema(
   }
 )
 
-const Carousel = mongoose.model('Carousel', carouselSchema)
+const Slide = mongoose.model('Slide', sliderSchema)
 
-export default Carousel
+export default Slide
