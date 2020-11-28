@@ -5,6 +5,10 @@ import {
   SLIDE_DETAILS_REQUEST,
   SLIDE_DETAILS_SUCCESS,
   SLIDE_DETAILS_FAIL,
+  SLIDE_CREATE_REQUEST,
+  SLIDE_CREATE_SUCCESS,
+  SLIDE_CREATE_FAIL,
+  SLIDE_CREATE_RESET,
 } from '../constants/sliderConstants'
 
 export const slidesListReducer = (state = { slides: [] }, action) => {
@@ -34,6 +38,21 @@ export const slidesDetailsReducer = (state = { slide: {} }, action) => {
       }
     case SLIDE_DETAILS_FAIL:
       return { loading: false, error: action.payload }
+    default:
+      return state
+  }
+}
+
+export const slideCreateReducer = (state = {}, action) => {
+  switch (action.type) {
+    case SLIDE_CREATE_REQUEST:
+      return { loading: true }
+    case SLIDE_CREATE_SUCCESS:
+      return { loading: false, success: true, slide: action.payload }
+    case SLIDE_CREATE_FAIL:
+      return { loading: false, error: action.payload }
+    case SLIDE_CREATE_RESET:
+      return {}
     default:
       return state
   }
