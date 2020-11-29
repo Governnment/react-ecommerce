@@ -12,11 +12,11 @@ const sliderSchema = mongoose.Schema(
     },
     link: {
       type: String,
-      required: true,
+      required: false,
     },
     button: {
       type: String,
-      required: true,
+      required: false,
     },
     image: {
       type: String,

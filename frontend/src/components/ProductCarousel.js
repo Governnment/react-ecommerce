@@ -4,16 +4,19 @@ import { Carousel, Image } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Loader from './Loader'
 import Alert from './Alert'
-import { listTopProduct } from '../actions/productActions'
+import { listSlides } from '../actions/sliderActions'
 
 const ProductCarousel = () => {
   const dispatch = useDispatch()
 
-  const productTopRated = useSelector((state) => state.productTopRated)
-  const { loading, error, products } = productTopRated
+  const slidesList = useSelector((state) => state.slidesList)
+  const { loading, error, slides } = slidesList
+
+  const slidesDetails = useSelector((state) => state.slidesDetails)
+  const { slide } = slidesDetails
 
   useEffect(() => {
-    dispatch(listTopProduct())
+    dispatch(listSlides())
   }, [dispatch])
 
   return loading ? (
@@ -22,12 +25,19 @@ const ProductCarousel = () => {
     <Alert varaint='danger'>{error}</Alert>
   ) : (
     <Carousel pause='hover' className='bg-dark'>
-      {products.map((product) => (
-        <Carousel.Item key={product._id}>
-          <Link to={`/product/${product._id}`}>
-            <Image src={product.image} alt={product.name} fluid />
+      {slides.map((slide) => (
+        <Carousel.Item>
+          <Link to={`/product/${slide.link}`}>
+            <Image src={slide.image} alt={slide.title} fluid />
             <Carousel.Caption className='carousel-caption'>
-              <h2>{product.name} ({product.price})</h2>
+              <h2>{slide.title}</h2>
+              <p className='text-dark'>{slide.secondTitle}</p>
+              <div className='carousel-inline-btn'>
+                <Link to={`/product/${slide.link}`}>
+                  <span>Learn more</span>
+                </Link>
+                <button className='btn-primary'>Shop now</button>
+              </div>
             </Carousel.Caption>
           </Link>
         </Carousel.Item>

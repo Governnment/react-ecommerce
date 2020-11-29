@@ -32,6 +32,7 @@ import {
   slidesListReducer,
   slidesDetailsReducer,
   slideCreateReducer,
+  slideUpdateReducer,
 } from './reducers/sliderReducers'
 
 const reducer = combineReducers({
@@ -59,6 +60,7 @@ const reducer = combineReducers({
   slidesList: slidesListReducer,
   slidesDetails: slidesDetailsReducer,
   slideCreate: slideCreateReducer,
+  slideUpdate: slideUpdateReducer,
 })
 
 const cartItemsFromStorage = localStorage.getItem('cartItems')

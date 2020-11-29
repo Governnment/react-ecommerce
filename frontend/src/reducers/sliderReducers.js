@@ -9,6 +9,10 @@ import {
   SLIDE_CREATE_SUCCESS,
   SLIDE_CREATE_FAIL,
   SLIDE_CREATE_RESET,
+  SLIDE_UPDATE_REQUEST,
+  SLIDE_UPDATE_SUCCESS,
+  SLIDE_UPDATE_FAIL,
+  SLIDE_UPDATE_RESET,
 } from '../constants/sliderConstants'
 
 export const slidesListReducer = (state = { slides: [] }, action) => {
@@ -53,6 +57,21 @@ export const slideCreateReducer = (state = {}, action) => {
       return { loading: false, error: action.payload }
     case SLIDE_CREATE_RESET:
       return {}
+    default:
+      return state
+  }
+}
+
+export const slideUpdateReducer = (state = { slide: {} }, action) => {
+  switch (action.type) {
+    case SLIDE_UPDATE_REQUEST:
+      return { loading: true }
+    case SLIDE_UPDATE_SUCCESS:
+      return { loading: false, success: true, slide: action.payload }
+    case SLIDE_UPDATE_FAIL:
+      return { loading: false, error: action.payload }
+    case SLIDE_UPDATE_RESET:
+      return { slide: {} }
     default:
       return state
   }

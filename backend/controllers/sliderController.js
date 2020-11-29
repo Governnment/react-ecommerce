@@ -1,6 +1,5 @@
 import asyncHandler from 'express-async-handler'
-
-import Slide from '../models/sliderSchema.js'
+import Slide from '../models/sliderModel.js'
 
 //? @desk     Fetch all slides
 //? @rout     GET /api/slides
@@ -43,4 +42,28 @@ const createSlide = asyncHandler(async (req, res) => {
   res.status(201).json(createSlide)
 })
 
-export { getSlides, getSlideById, createSlide }
+//? @desk     Update a slide
+//? @rout     PUT /api/slider/:id
+//? @access   Private/Admin
+
+const updateSlide = asyncHandler(async (req, res) => {
+  const { title, secondTitle, link, button, image } = req.body
+
+  const slide = await Slide.findById(req.params.id)
+
+  if (slide) {
+    slide.title = title
+    slide.secondTitle = secondTitle
+    slide.link = link
+    slide.button = button
+    slide.image = image
+
+    const updatedSlide = await slide.save()
+    res.json(updatedSlide)
+  } else {
+    res.status(404)
+    throw new Error('Slide not found')
+  }
+})
+
+export { getSlides, getSlideById, createSlide, updateSlide }

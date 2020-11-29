@@ -34,7 +34,7 @@ const SlidesListScreen = ({ history }) => {
     if (successCreate) {
       history.push(`/admin/slider/${createdSlide._id}/edit`)
     } else {
-      dispatch(listSlides())
+      dispatch(listSlides(''))
     }
   }, [dispatch, history, userInfo, createdSlide, successCreate])
 
@@ -54,6 +54,8 @@ const SlidesListScreen = ({ history }) => {
           </Button>
         </Col>
       </Row>
+      {loadingCreate && <Loader />}
+      {errorCreate && <Alert variant='danger'>{errorCreate}</Alert>}
       {loading ? (
         <Loader />
       ) : error ? (
@@ -79,7 +81,7 @@ const SlidesListScreen = ({ history }) => {
                   <td>{slide.link}</td>
                   <td>{slide.createdAt}</td>
                   <td>
-                    <LinkContainer to={`/admin/product/${slide._id}/edit`}>
+                    <LinkContainer to={`/admin/slider/${slide._id}/edit`}>
                       <Button variant='light' className='btn-sm'>
                         <i className='fas fa-edit'></i>
                       </Button>
