@@ -66,4 +66,16 @@ const updateSlide = asyncHandler(async (req, res) => {
   }
 })
 
-export { getSlides, getSlideById, createSlide, updateSlide }
+const deleteSlide = asyncHandler(async (req, res) => {
+  const slide = await Slide.findById(req.params.id)
+
+  if (slide) {
+    await slide.remove()
+    res.json({ message: 'Slide removed' })
+  } else {
+    res.status(404)
+    throw new Error('Slide not found')
+  }
+})
+
+export { getSlides, getSlideById, createSlide, updateSlide, deleteSlide }
