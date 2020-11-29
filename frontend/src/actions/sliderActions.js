@@ -12,6 +12,9 @@ import {
   SLIDE_UPDATE_SUCCESS,
   SLIDE_UPDATE_FAIL,
   SLIDE_UPDATE_REQUEST,
+  SLIDE_DELETE_SUCCESS,
+  SLIDE_DELETE_FAIL,
+  SLIDE_DELETE_REQUEST,
 } from '../constants/sliderConstants'
 
 export const listSlides = () => async (dispatch) => {
@@ -108,6 +111,36 @@ export const updateSlide = (slide) => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: SLIDE_UPDATE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+
+export const deleteSlide = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: SLIDE_DELETE_REQUEST })
+
+    const {
+      userLogin: { userInfo },
+    } = getState()
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+
+    await axios.delete(`/api/slider/${id}`, config)
+
+    dispatch({
+      type: SLIDE_DELETE_SUCCESS,
+    })
+  } catch (error) {
+    dispatch({
+      type: SLIDE_DELETE_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

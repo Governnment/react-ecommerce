@@ -4,7 +4,7 @@ import { Table, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Alert from '../components/Alert'
 import Loader from '../components/Loader'
-import { listSlides, createSlide } from '../actions/sliderActions'
+import { listSlides, createSlide, deleteSlide } from '../actions/sliderActions'
 import { SLIDE_CREATE_RESET } from '../constants/sliderConstants'
 
 const SlidesListScreen = ({ history }) => {
@@ -21,6 +21,13 @@ const SlidesListScreen = ({ history }) => {
     slide: createdSlide,
   } = slideCreate
 
+  const slideDelete = useSelector((state) => state.slideDelete)
+  const {
+    loading: loadingDelete,
+    error: errorDelete,
+    success: successDelete,
+  } = slideDelete
+
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
@@ -36,10 +43,16 @@ const SlidesListScreen = ({ history }) => {
     } else {
       dispatch(listSlides(''))
     }
-  }, [dispatch, history, userInfo, createdSlide, successCreate])
+  }, [dispatch, history, userInfo, createdSlide, successCreate, successDelete])
 
   const createSlideHandler = () => {
     dispatch(createSlide())
+  }
+
+  const deleteHandler = (id) => {
+    if (window.confirm('Are you sure?')) {
+      dispatch(deleteSlide(id))
+    }
   }
 
   return (
@@ -54,6 +67,8 @@ const SlidesListScreen = ({ history }) => {
           </Button>
         </Col>
       </Row>
+      {loadingDelete && <Loader />}
+      {errorDelete && <Alert variant='danger'>{errorDelete}</Alert>}
       {loadingCreate && <Loader />}
       {errorCreate && <Alert variant='danger'>{errorCreate}</Alert>}
       {loading ? (
@@ -86,7 +101,11 @@ const SlidesListScreen = ({ history }) => {
                         <i className='fas fa-edit'></i>
                       </Button>
                     </LinkContainer>
-                    <Button variant='danger' className='btn-sm'>
+                    <Button
+                      variant='danger'
+                      className='btn-sm'
+                      onClick={() => deleteHandler(slide._id)}
+                    >
                       <i className='fas fa-trash'></i>
                     </Button>
                   </td>
