@@ -25,7 +25,7 @@ const HomeScreen = ({ match }) => {
     <>
       <div>
         {!keyword && <ProductCarousel />}
-        <h1>Latest Products</h1>
+        <h1 className='pt-4'>Latest Products</h1>
         {loading ? (
           <Loader />
         ) : error ? (

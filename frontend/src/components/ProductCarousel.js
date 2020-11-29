@@ -26,15 +26,15 @@ const ProductCarousel = () => {
   ) : (
     <Carousel pause='hover' className='bg-dark'>
       {slides.map((slide) => (
-        <Carousel.Item>
+        <Carousel.Item key={slide._id}>
           <Link to={`/product/${slide.link}`}>
             <Image src={slide.image} alt={slide.title} fluid />
             <Carousel.Caption className='carousel-caption'>
               <h2>{slide.title}</h2>
-              <p className='text-dark'>{slide.secondTitle}</p>
-              <div className='carousel-inline-btn'>
+              <p className='text-dark py-3'>{slide.secondTitle}</p>
+              <div className='carousel-inline-btn carousel-btns'>
                 <Link to={`/product/${slide.link}`}>
-                  <span>Learn more</span>
+                  <span className='mr-3'>Learn more</span>
                 </Link>
                 <button className='btn-primary'>Shop now</button>
               </div>

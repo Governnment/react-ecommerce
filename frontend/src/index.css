@@ -29,14 +29,18 @@ body {
 h1 {
   font-size: 1.8rem;
   padding: 1rem 0;
+  font-family: 'Poppins', sans-serif;
 }
 h2 {
   font-size: 1.4rem;
   padding: 0.5rem 0;
+  font-family: 'Poppins', sans-serif;
 }
 h3 {
   padding: 1rem;
+  font-family: 'Poppins', sans-serif;
 }
+
 .rating span {
   margin: 0.1rem;
 }
@@ -84,14 +88,36 @@ h3 {
 }
 
 .carousel-caption h2 {
-  color: #fff;
+  color: #000;
+  font-family: 'Poppins', sans-serif;
+  font-size: 48px;
+  font-weight: 600;
 }
-
+.carousel-caption p {
+  color: #000;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+}
+.carousel-btns {
+  font-family: 'Poppins', sans-serif;
+}
+.carousel-btns span {
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+}
+.carousel-btns button {
+  font-size: 14px;
+  font-weight: 400;
+  background: #000;
+  padding: 8px 20px 9px 20px;
+}
+.carousel-btns button:hover {
+  background: #3d3d3d;
+}
 .carousel img {
-  height: 300px;
-  padding: 30px;
-  margin: 40px;
-  border-radius: 50%;
+  height: 624.38px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -117,8 +143,15 @@ main {
 .navbar {
   background: var(--navbarBackgroundColor) !important;
 }
+.navbar button {
+  font-family: 'Poppins', sans-serif;
+}
+.navbar .dropdown-item {
+  font-family: 'Poppins', sans-serif;
+}
 .nav-link {
   color: var(--primaryTextColor);
+  font-family: 'Poppins', sans-serif;
 }
 .nav-link:hover {
   color: var(--secondaryTextColor);
@@ -133,9 +166,29 @@ main {
 .card a {
   color: var(--primaryTextColor);
 }
+.card-title strong {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+}
 .card-text {
   color: var(--primaryTextColor);
 }
+.card-text:last-child {
+  padding: 16px 16px 16px 0px;
+}
+.card-text span {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+}
+.card-img,
+.card-img-top,
+.card-img-bottom {
+  border-radius: 20px;
+}
+.rounded {
+  border-radius: 20px !important;
+}
+
 .list-group-item-dark,
 .list-group-item-dark a {
   background: var(--secondaryBackgroundColor);
@@ -187,6 +240,8 @@ tr {
 }
 footer {
   color: var(--secondaryTextColor);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
 }
 /*Dark mode toggle*/
 
