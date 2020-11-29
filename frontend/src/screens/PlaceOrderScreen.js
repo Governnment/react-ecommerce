@@ -63,7 +63,7 @@ const PlaceOrderScreen = ({ history }) => {
             <ListGroup.Item className='list-group-item-dark my-1'>
               <h2>Shipping</h2>
               <p>
-                <strong>Address:</strong>
+                <strong className='mr-2'>Address:</strong>
                 {cart.shippingAddress.address}, {cart.shippingAddress.city}{' '}
                 {cart.shippingAddress.postalCode} {cart.shippingAddress.country}
               </p>
@@ -71,7 +71,7 @@ const PlaceOrderScreen = ({ history }) => {
 
             <ListGroup.Item className='list-group-item-dark my-1'>
               <h2>Payment Method</h2>
-              <strong>Method: </strong>
+              <strong className='mr-1'>Method: </strong>
               {cart.paymentMethod}
             </ListGroup.Item>
 

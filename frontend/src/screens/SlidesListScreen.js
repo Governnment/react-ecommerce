@@ -97,13 +97,13 @@ const SlidesListScreen = ({ history }) => {
                   <td>{slide.createdAt}</td>
                   <td>
                     <LinkContainer to={`/admin/slider/${slide._id}/edit`}>
-                      <Button variant='light' className='btn-sm'>
+                      <Button variant='light' className='btn-sm fit'>
                         <i className='fas fa-edit'></i>
                       </Button>
                     </LinkContainer>
                     <Button
                       variant='danger'
-                      className='btn-sm'
+                      className='btn-sm fit'
                       onClick={() => deleteHandler(slide._id)}
                     >
                       <i className='fas fa-trash'></i>

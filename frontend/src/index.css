@@ -40,7 +40,13 @@ h3 {
   padding: 1rem;
   font-family: 'Poppins', sans-serif;
 }
-
+a {
+  color: var(--primaryTextColor);
+}
+a:hover {
+  color: var(--secondaryTextColor);
+  text-decoration: none;
+}
 .rating span {
   margin: 0.1rem;
 }
@@ -103,6 +109,7 @@ h3 {
   font-family: 'Poppins', sans-serif;
 }
 .carousel-btns span {
+  color: #000;
   font-size: 14px;
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
@@ -156,6 +163,13 @@ main {
 .nav-link:hover {
   color: var(--secondaryTextColor);
 }
+.checkout-steps {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+.checkout-steps .nav-link {
+  padding: 0.5rem 0;
+}
 .card {
   background-color: var(--secondaryBackgroundColor);
 }
@@ -188,19 +202,33 @@ main {
 .rounded {
   border-radius: 20px !important;
 }
-
+.rounded-product-img {
+  border-radius: 30px;
+}
 .list-group-item-dark,
 .list-group-item-dark a {
   background: var(--secondaryBackgroundColor);
   color: var(--primaryTextColor);
   border-radius: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+}
+.list-group-flush > .list-group-item {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
 }
 .table-responsive,
 tr,
-td {
+td:not(.btn) {
   background: var(--secondaryBackgroundColor);
   color: var(--primaryTextColor);
   border-radius: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+}
+td .fit {
+  width: 45px;
+  margin: 0.1rem;
 }
 thead,
 tr {
@@ -208,6 +236,17 @@ tr {
 }
 .form-control {
   border-radius: 20px;
+}
+.form-label {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+}
+.form-check-label {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+}
+.btn {
+  font-family: 'Poppins', sans-serif;
 }
 .btn-back {
   background: var(--backBtnBackground);
