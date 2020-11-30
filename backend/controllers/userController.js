@@ -1,5 +1,6 @@
 import asyncHandler from 'express-async-handler'
 import generateToken from '../utils/generateToken.js'
+import speakeasy from 'speakeasy'
 import User from '../models/userModel.js'
 
 //? @desk     Auth user & get token
@@ -18,6 +19,7 @@ const authUser = asyncHandler(async (req, res) => {
       email: user.email,
       isAdmin: user.isAdmin,
       token: generateToken(user._id),
+      temp_secret: speakeasy.generateSecret(),
     })
   } else {
     res.status(401)
@@ -31,6 +33,8 @@ const authUser = asyncHandler(async (req, res) => {
 
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body
+
+  const temp_secret = speakeasy.generateSecret()
 
   const userExists = await User.findOne({ email })
 
@@ -52,10 +56,38 @@ const registerUser = asyncHandler(async (req, res) => {
       email: user.email,
       isAdmin: user.isAdmin,
       token: generateToken(user._id),
+      secret: temp_secret.base32,
     })
   } else {
     res.status(400)
     throw new Error('Invalid user data')
+  }
+})
+
+//? @desk     Verify token and make secret perm
+//? @rout     POST /api/users/verify
+//? @access   Private
+
+const verifyUser = asyncHandler(async (req, res) => {
+  const { tokenId, _id } = req.body
+
+  const user = await User.findOne({ _id })
+  try {
+    const { base32: secret } = user.temp_secret
+
+    const verified = speakeasy.totp.verify({
+      secret,
+      encoding: 'base32',
+      tokenId,
+    })
+
+    if (verified) {
+      res.json({ verified: true })
+    } else {
+      res.json({ verified: false })
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Error finding user' })
   }
 })
 
@@ -178,6 +210,7 @@ const updateUser = asyncHandler(async (req, res) => {
 export {
   authUser,
   registerUser,
+  verifyUser,
   getUserProfile,
   updateUserProfile,
   getUsers,

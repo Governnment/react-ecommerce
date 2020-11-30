@@ -3,6 +3,7 @@ const router = express.Router()
 import {
   authUser,
   registerUser,
+  verifyUser,
   getUserProfile,
   updateUserProfile,
   getUsers,
@@ -23,5 +24,6 @@ router
   .delete(protect, admin, deleteUser)
   .get(protect, admin, getUserById)
   .put(protect, admin, updateUser)
+router.route('/verify').post(verifyUser)
 
 export default router
