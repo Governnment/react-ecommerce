@@ -95,15 +95,15 @@ a:hover {
 
 .carousel-caption h2 {
   color: #000;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Bebas Neue', cursive;
   font-size: 48px;
-  font-weight: 600;
+  font-weight: 500;
 }
 .carousel-caption p {
   color: #000;
   font-family: 'Poppins', sans-serif;
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 400;
 }
 .carousel-btns {
   font-family: 'Poppins', sans-serif;
@@ -268,6 +268,8 @@ tr {
   background: var(--editBtnBackgroundColor) !important;
   box-shadow: var(--editBtnShadow);
   border-radius: 30px;
+  color: white !important;
+  font-weight: 600 !important;
 }
 .btn-delete {
   background: var(--deleteBtnBackgroundColor) !important;

@@ -19,7 +19,7 @@ const authUser = asyncHandler(async (req, res) => {
       email: user.email,
       isAdmin: user.isAdmin,
       token: generateToken(user._id),
-      temp_secret: speakeasy.generateSecret(),
+      temp_secret: speakeasy.generateSecret,
     })
   } else {
     res.status(401)
@@ -47,6 +47,7 @@ const registerUser = asyncHandler(async (req, res) => {
     name,
     email,
     password,
+    temp_secret: temp_secret.base32,
   })
 
   if (user) {
@@ -69,16 +70,16 @@ const registerUser = asyncHandler(async (req, res) => {
 //? @access   Private
 
 const verifyUser = asyncHandler(async (req, res) => {
-  const { tokenId, _id } = req.body
+  const { token } = req.body
 
-  const user = await User.findOne({ _id })
   try {
+    const user = await User.findById(req.params.id)
     const { base32: secret } = user.temp_secret
 
     const verified = speakeasy.totp.verify({
       secret,
       encoding: 'base32',
-      tokenId,
+      token,
     })
 
     if (verified) {
@@ -134,8 +135,6 @@ const updateUserProfile = asyncHandler(async (req, res) => {
       isAdmin: updatedUser.isAdmin,
       token: generateToken(updatedUser._id),
     })
-
-    res.js
   } else {
     res.status(404)
     throw new Error('User not found')
