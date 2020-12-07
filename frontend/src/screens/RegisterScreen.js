@@ -6,6 +6,7 @@ import Alert from '../components/Alert'
 import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
 import { register } from '../actions/userActions'
+import signupImg from '../Images/illustrations/clip-sign-up.png'
 
 const RegisterScreen = ({ location, history }) => {
   const [name, setName] = useState('')
@@ -38,10 +39,12 @@ const RegisterScreen = ({ location, history }) => {
 
   return (
     <FormContainer>
-      <h1>Sign Up</h1>
+      <h1 className='text-center'>Sign Up</h1>
       {message && <Alert variant='danger'>{message}</Alert>}
       {error && <Alert variant='danger'>{error}</Alert>}
       {loading && <Loader />}
+      <img src={signupImg} className='w-100' />
+      <h2>Sign in to explore our awesome world</h2>
       <Form onSubmit={submitHandler}>
         <Form.Group controlId='name'>
           <Form.Label>Name</Form.Label>

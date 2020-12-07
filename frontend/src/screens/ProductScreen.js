@@ -13,6 +13,7 @@ import {
   createProductReview,
 } from '../actions/productActions'
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstans'
+import noCommentsImg from '../Images/illustrations/clip-no-messages.png'
 
 const ProductScreen = ({ history, match }) => {
   const [qty, setQty] = useState(1)
@@ -83,7 +84,12 @@ const ProductScreen = ({ history, match }) => {
         <>
           <Row>
             <Col md={6}>
-              <Image src={product.image} alt={product.name} fluid className='rounded-product-img'/>
+              <Image
+                src={product.image}
+                alt={product.name}
+                fluid
+                className='rounded-product-img'
+              />
             </Col>
             <Col md={3}>
               <ListGroup variant='flush'>
@@ -190,7 +196,12 @@ const ProductScreen = ({ history, match }) => {
           <Row>
             <Col md={6}>
               <h2>Reviews</h2>
-              {product.reviews.length === 0 && <Alert>No Reviews</Alert>}
+              {product.reviews.length === 0 && (
+                <>
+                  <img className='w-100' src={noCommentsImg} alt='review' />
+                  <Alert>No Reviews</Alert>
+                </>
+              )}
               <ListGroup variant='flush' className='list-group-item-dark'>
                 {product.reviews.map((review) => (
                   <ListGroup.Item
@@ -243,7 +254,11 @@ const ProductScreen = ({ history, match }) => {
                     </Form>
                   ) : (
                     <Alert>
-                      Please <Link to='/loging'>sign in</Link> to write a review
+                      Please{' '}
+                      <Link to='/loging' className='normal-link'>
+                        sign in
+                      </Link>{' '}
+                      to write a review
                     </Alert>
                   )}
                 </ListGroup.Item>

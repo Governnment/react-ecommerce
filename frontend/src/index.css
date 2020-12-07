@@ -50,18 +50,22 @@ a:hover {
 .rating span {
   margin: 0.1rem;
 }
-
-.errorAnimation {
-  width: 100%;
-  height: auto;
+.alert-info {
+  border-radius: 30px;
+}
+.normal-link {
+  background: #d2ebf5 !important;
+  color: #000 !important;
 }
 .errorText {
   width: 100%;
   height: auto;
   text-align: center;
+  color: var(--primaryTextColor);
 }
 .errorText h4 {
   font-size: 40px;
+  color: var(--primaryTextColor);
 }
 .errorButton {
   margin: 1.5rem 0;

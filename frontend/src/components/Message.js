@@ -1,14 +1,16 @@
 import React from 'react'
 import { Row } from 'react-bootstrap'
-import errorAnimation from '../video/404-Animation.mp4'
+import errorIllustration from '../Images/illustrations/clip-page-not-found.png'
 
 const Message = ({ children }) => {
   return (
     <Row>
       <div className='message'>
-        <video className='errorAnimation' autoPlay muted>
-          <source src={errorAnimation} type='video/mp4' />
-        </video>
+        <img
+          className='w-50 mx-auto d-block'
+          src={errorIllustration}
+          alt='error'
+        />
         <div className='errorText'>
           <h4>Cap we got a problem here</h4>
           <h3 className='errorLog'>{children}</h3>

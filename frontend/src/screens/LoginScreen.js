@@ -6,6 +6,7 @@ import Alert from '../components/Alert'
 import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
 import { login } from '../actions/userActions'
+import loginImg from '../Images/illustrations/clip-sign-in.png'
 
 const LoginScreen = ({ location, history }) => {
   const [email, setEmail] = useState('')
@@ -31,9 +32,11 @@ const LoginScreen = ({ location, history }) => {
 
   return (
     <FormContainer>
-      <h1>Sign In</h1>
+      <h1 className='text-center'>Welcome back</h1>
       {error && <Alert variant='danger'>{error}</Alert>}
       {loading && <Loader />}
+      <img src={loginImg} className='w-100' />
+      <h2>We're so excited to see you again!</h2>
       <Form onSubmit={submitHandler}>
         <Form.Group controlId='email'>
           <Form.Label>Email addres</Form.Label>
