@@ -53,11 +53,13 @@ const CartScreen = ({ match, location, history }) => {
                   <Col md={2}>
                     <Image src={item.image} alt={item.name} fluid rounded />
                   </Col>
-                  <Col md={3}>
+                  <Col md={3} className='cart-product-name'>
                     <Link to={`/product/${item.product}`}>{item.name}</Link>
                   </Col>
-                  <Col md={2}>${item.price}</Col>
-                  <Col md={2}>
+                  <Col md={2} className='cart-product-price'>
+                    ${item.price}
+                  </Col>
+                  <Col md={2} className='cart-form-control col-9'>
                     <Form.Control
                       as='select'
                       value={item.qty}
@@ -74,7 +76,7 @@ const CartScreen = ({ match, location, history }) => {
                       ))}
                     </Form.Control>
                   </Col>
-                  <Col md={2}>
+                  <Col md={2} className='cart-remove-btn col-3'>
                     <Button
                       className='btn-light-custom'
                       type='button'
@@ -93,15 +95,17 @@ const CartScreen = ({ match, location, history }) => {
       <Col md={4}>
         <Card>
           <ListGroup variant='flush'>
-            <ListGroup.Item className='list-group-item-dark'>
+            <ListGroup.Item className='list-group-item-dark cart-subtotal'>
               <h2>
                 Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
                 items
               </h2>
-              $
-              {cartItems
-                .reduce((acc, item) => acc + item.qty * item.price, 0)
-                .toFixed(2)}
+              <p>
+                $
+                {cartItems
+                  .reduce((acc, item) => acc + item.qty * item.price, 0)
+                  .toFixed(2)}
+              </p>
             </ListGroup.Item>
             <ListGroup.Item className='list-group-item-dark'>
               <Button

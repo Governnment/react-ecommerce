@@ -29,9 +29,11 @@ const PaymentScreen = ({ history }) => {
       <h1>Payment Method</h1>
       <Form onSubmit={submitHandler}>
         <Form.Group>
-          <Form.Label as='legend'>Select Payment Method</Form.Label>
+          <Form.Label as='legend' className='my-3'>
+            Select Payment Method
+          </Form.Label>
 
-          <Col>
+          <Col className='payment-form-check'>
             <Form.Check
               type='radio'
               label='PayPal or Credit Card'
@@ -51,9 +53,11 @@ const PaymentScreen = ({ history }) => {
             ></Form.Check> */}
           </Col>
         </Form.Group>
-        <Button type='submit' variant='primary'>
-          Continue
-        </Button>
+        <div className='text-lg-left text-center'>
+          <Button type='submit' variant='primary'>
+            Continue
+          </Button>
+        </div>
       </Form>
     </FormContainer>
   )

@@ -95,10 +95,10 @@ const OrderScreen = ({ match, history }) => {
     <Alert variant='danger'>{error}</Alert>
   ) : (
     <>
-      <h1>Order {order._id}</h1>
+      <h1 className='order-id'>Order {order._id}</h1>
       <Row>
         <Col md={8}>
-          <ListGroup variant='flush'>
+          <ListGroup variant='flush' className='order'>
             <ListGroup.Item className='list-group-item-dark m-1'>
               <h2>Shipping</h2>
               <p>
@@ -137,7 +137,7 @@ const OrderScreen = ({ match, history }) => {
               )}
             </ListGroup.Item>
 
-            <ListGroup.Item className='list-group-item-dark m-1'>
+            <ListGroup.Item className='list-group-item-dark m-1 order-items'>
               <h2>Order Items</h2>
               {order.orderItems.length === 0 ? (
                 <Alert>Order is empty</Alert>
@@ -176,7 +176,7 @@ const OrderScreen = ({ match, history }) => {
         <Col md={4}>
           <Card>
             <ListGroup variant='flush'>
-              <ListGroup.Item className='list-group-item-dark '>
+              <ListGroup.Item className='list-group-item-dark'>
                 <h2>Order Summary</h2>
               </ListGroup.Item>
               <ListGroup.Item className='list-group-item-dark'>

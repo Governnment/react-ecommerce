@@ -59,7 +59,7 @@ const PlaceOrderScreen = ({ history }) => {
       <CheckoutSteps step1 step2 step3 step4 />
       <Row>
         <Col md={8}>
-          <ListGroup variant='flush'>
+          <ListGroup variant='flush' className='placeorder'>
             <ListGroup.Item className='list-group-item-dark my-1'>
               <h2>Shipping</h2>
               <p>
@@ -80,7 +80,7 @@ const PlaceOrderScreen = ({ history }) => {
               {cart.cartItems.length === 0 ? (
                 <Alert>Your cart is empty</Alert>
               ) : (
-                <ListGroup variant='flush'>
+                <ListGroup variant='flush' className='placeorder-items'>
                   {cart.cartItems.map((item, index) => (
                     <ListGroup.Item
                       key={index}
