@@ -92,7 +92,7 @@ const ProductScreen = ({ history, match }) => {
               />
             </Col>
             <Col md={3}>
-              <ListGroup variant='flush'>
+              <ListGroup variant='flush' className='product-details'>
                 <ListGroup.Item className='list-group-item-dark m-1'>
                   <h2>{product.name}</h2>
                 </ListGroup.Item>
@@ -102,17 +102,17 @@ const ProductScreen = ({ history, match }) => {
                     text={`${product.numReviews} reviews`}
                   />
                 </ListGroup.Item>
-                <ListGroup.Item className='list-group-item-dark m-1'>
+                <ListGroup.Item className='list-group-item-dark m-1 product-details-price'>
                   Price: ${product.price}
                 </ListGroup.Item>
-                <ListGroup.Item className='list-group-item-dark m-1'>
+                <ListGroup.Item className='list-group-item-dark m-1 product-details-description'>
                   Description: {product.description}
                 </ListGroup.Item>
               </ListGroup>
             </Col>
             <Col md={3}>
               <Card>
-                <ListGroup variant='flash'>
+                <ListGroup variant='flash' className='product-screen-summary'>
                   <ListGroup.Item className='list-group-item-dark'>
                     <Row>
                       <Col>Price:</Col>
@@ -169,7 +169,7 @@ const ProductScreen = ({ history, match }) => {
                 </ListGroup>
               </Card>
               {userInfo && userInfo.isAdmin && (
-                <ListGroup className='py-3'>
+                <ListGroup className='py-3 product-screen-admin'>
                   <ListGroup.Item className='list-group-item-dark'>
                     <LinkContainer to={`/admin/product/${product._id}/edit`}>
                       <Button
@@ -193,7 +193,7 @@ const ProductScreen = ({ history, match }) => {
               )}
             </Col>
           </Row>
-          <Row>
+          <Row className='product-screen-review '>
             <Col md={6}>
               <h2>Reviews</h2>
               {product.reviews.length === 0 && (

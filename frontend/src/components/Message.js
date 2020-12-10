@@ -7,7 +7,7 @@ const Message = ({ children }) => {
     <Row>
       <div className='message'>
         <img
-          className='w-50 mx-auto d-block'
+          className='w-50 mx-auto d-block error-mobile'
           src={errorIllustration}
           alt='error'
         />

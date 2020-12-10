@@ -32,7 +32,7 @@ const CartScreen = ({ match, location, history }) => {
   }
 
   return (
-    <Row>
+    <Row className='cart'>
       <Col md={8}>
         <h1>Shopping cart</h1>
         {cartItems.length === 0 ? (
@@ -59,7 +59,7 @@ const CartScreen = ({ match, location, history }) => {
                   <Col md={2} className='cart-product-price'>
                     ${item.price}
                   </Col>
-                  <Col md={2} className='cart-form-control col-9'>
+                  <Col md={2} sm={9} className='cart-form-control col-9'>
                     <Form.Control
                       as='select'
                       value={item.qty}
@@ -76,7 +76,7 @@ const CartScreen = ({ match, location, history }) => {
                       ))}
                     </Form.Control>
                   </Col>
-                  <Col md={2} className='cart-remove-btn col-3'>
+                  <Col md={2} sm={3} className='cart-remove-btn col-3'>
                     <Button
                       className='btn-light-custom'
                       type='button'

@@ -116,8 +116,7 @@ const OrderScreen = ({ match, history }) => {
               </p>
               {order.isDelivered ? (
                 <Alert variant='success'>
-                  Delivered on
-                  {order.deliveredAt}
+                  Delivered on {order.deliveredAt.substring(0, 10)}
                 </Alert>
               ) : (
                 <Alert variant='danger'>Not Delivered</Alert>
@@ -131,7 +130,9 @@ const OrderScreen = ({ match, history }) => {
                 {order.paymentMethod}
               </p>
               {order.isPaid ? (
-                <Alert variant='success'>Paid on {order.paidAt}</Alert>
+                <Alert variant='success'>
+                  Paid on {order.paidAt.substring(0, 10)}
+                </Alert>
               ) : (
                 <Alert variant='danger'>Not paid</Alert>
               )}

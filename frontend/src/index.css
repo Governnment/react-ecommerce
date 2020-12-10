@@ -290,12 +290,48 @@ tr {
 .border-radius {
   border-radius: 30px;
 }
+.product-screen-review .alert-info {
+  width: 30%;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+}
+.cart .alert-info {
+  width: 60%;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+}
+.order .alert-danger {
+  width: 30%;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: center;
+  border-radius: 30px;
+}
+.order .alert-success {
+  width: 35%;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: center;
+  border-radius: 30px;
+}
 footer {
   color: var(--secondaryTextColor);
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
 }
+
 @media only screen and (max-width: 900px) {
+  .navbar-brand {
+    font-size: 1.1rem !important;
+  }
+  .product-card strong {
+    font-size: 1.2rem;
+  }
+  .product-card span {
+    font-size: 1.1rem;
+  }
   .cart-product-name {
     margin: 1rem 0 1rem 0;
     font-size: 1.4rem;
@@ -312,6 +348,12 @@ footer {
   }
   .cart-subtotal p {
     font-size: 1.7rem;
+  }
+  .cart .alert-info {
+    width: 100%;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-align: center;
   }
   .payment-form-check {
     font-size: 1.3rem;
@@ -356,6 +398,58 @@ footer {
   .order-items .col-md-4 {
     font-size: 1rem;
     margin: 1rem 0 1rem 0;
+  }
+  .order .alert-danger {
+    width: 60%;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+    border-radius: 30px;
+  }
+  .order .alert-success {
+    width: 90%;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+    border-radius: 30px;
+  }
+  .search-box input {
+    width: 75%;
+    margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+  }
+  .error-mobile {
+    width: 100% !important;
+  }
+  .btn-back {
+    background: var(--backBtnHoverBackground);
+    color: var(--primaryTextColor);
+  }
+  .product-details span {
+    font-size: 1.1rem;
+  }
+  .product-details-price {
+    font-size: 1.2rem;
+  }
+  .product-details-description {
+    font-size: 1rem;
+  }
+  .product-screen-summary .col {
+    font-size: 1.1rem;
+  }
+  .product-screen-summary button {
+    font-size: 0.9rem;
+  }
+  .product-screen-admin,
+  a,
+  button {
+    font-size: 0.9rem !important;
+  }
+  .product-screen-review .alert-info {
+    width: 50%;
+    transform: translate(50%);
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
   }
 }
 /*Dark mode toggle*/
