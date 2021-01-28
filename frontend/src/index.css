@@ -210,6 +210,18 @@ main {
 .card-img-bottom {
   border-radius: 20px;
 }
+.image-container {
+  border-radius: 20px;
+  overflow: hidden;
+}
+.image-container img {
+  display: block;
+  transition: transform 0.7s;
+}
+.image-container:hover img {
+  transform: scale(1.15);
+  transform-origin: 50% 50%;
+}
 .rounded {
   border-radius: 20px !important;
 }

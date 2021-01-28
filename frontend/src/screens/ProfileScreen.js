@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { Table, Form, Button, Row, Col } from 'react-bootstrap'
+import { Table, Form, Button, Row, Col, ListGroup } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
+import Rating from '../components/Rating'
 import { getUserDetails, updateUserProfile } from '../actions/userActions'
 import { listMyOrders } from '../actions/orderActions'
 import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants'
@@ -22,6 +23,9 @@ const ProfileScreen = ({ location, history }) => {
 
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
+
+  const productDetails = useSelector((state) => state.productDetails)
+  const { product } = productDetails
 
   const userUpdateProfile = useSelector((state) => state.userUpdateProfile)
   const { success } = userUpdateProfile
@@ -162,6 +166,20 @@ const ProfileScreen = ({ location, history }) => {
             </tbody>
           </Table>
         )}
+      </Col>
+      <Col md={9}>
+        <h2>My Reviews</h2>
+        
+        {product.reviews.map((review) => (
+          <ListGroup.Item key={review._id} className='list-group-item-dark'>
+            <strong>{review.name}</strong>
+            <div className='my-2'>
+              <Rating value={review.rating} />
+            </div>
+            <p>{review.createdAt.substring(0, 10)}</p>
+            <p>{review.comment}</p>
+          </ListGroup.Item>
+        ))}
       </Col>
     </Row>
   )

@@ -153,6 +153,20 @@ const createProductReview = asyncHandler(async (req, res) => {
   }
 })
 
+//? @desk     Get reviews
+//? @rout     GET /api/product/reviews
+//? @access   Private
+
+const getProductReview = asyncHandler(async (req, res) => {
+  if (reviews) {
+    const products = await Product.find({}).populate('rating', 'comment')
+    res.json(products)
+  } else {
+    res.status(404)
+    throw new Error('Review not found')
+  }
+})
+
 //? @desk     Get top rated products
 //? @rout     GET /api/product/top
 //? @access   Public
@@ -170,5 +184,6 @@ export {
   createProduct,
   updateProduct,
   createProductReview,
+  getProductReview,
   getTopProducts,
 }
